@@ -1,0 +1,63 @@
+
+<html>
+
+<head>
+    <title></title>
+</head>
+
+
+<body>
+
+<div class="cart">
+    <h2>Cart</h2>
+    <div id="cart-items"></div>
+    <p>Total: $<span id="total">0</span></p>
+    <button class="checkout-btn">Checkout</button>
+	<button class="checkout-btn" onclick="removefromcar()">Remove From Cart</button>
+  </div>
+  <script>
+    // JavaScript code for the shopping cart functionality
+    var cart = [];
+    var total = 0;
+    var cartItemsElement = document.getElementById("cart-items");
+    var totalElement = document.getElementById("total");
+  
+    function addToCart(name, price) {
+      cart.push({ name: name, price: price });
+      total += price;
+      renderCartItems();
+      updateTotal();
+    }
+  
+    function renderCartItems() {
+      cartItemsElement.innerHTML = "";
+      for (var i = 0; i < cart.length; i++) {
+        var item = cart[i];
+        var cartItemElement = document.createElement("div");
+        cartItemElement.classList.add("cart-item");
+        cartItemElement.innerHTML = `
+          <img src="src/p${i + 1}.jpg" alt="${item.name}">
+          <span>${item.name} - $${item.price}</span>
+        `;
+        cartItemsElement.appendChild(cartItemElement);
+      }
+    }
+	function removefromcar(){
+	    cartItemsElement.innerHTML = "";
+      for (var i = 0; i < cart.length; i++) {
+        var item = cart[i];
+        var cartItemElement = document.removeEventListener("div");
+        cartItemElement.classList.remove("cart-item");
+       
+        cartItemsElement.removeChild(cartItemElement);
+      }
+	}
+  
+    function updateTotal() {
+      totalElement.textContent = total;
+    }
+  </script>
+
+</body>
+
+  </html>
